@@ -98,4 +98,45 @@ rbind(x,y)
 
 fx <- factor(c("yes","yes","yes","no","no"),levels = c("yes","no"))
 
+getwd()
 
+#Missing Values
+c <- c(1,2,NaN,NA,4)
+is.na(c)
+is.nan(c)
+
+#Data Frames
+read.table()
+read.csv()
+data.frame()
+
+x <- data.frame(fu=1:4, bar=c(T,T,F,F))
+
+#Names Attribute
+x <- 1:3
+names(x) <- c("bulbasaur","charmander","squirtle")
+
+x <- list(a=1,b=2,c=3)
+
+m <- matrix(1:4,nrow=2,ncol=2)
+dimnames(m) <- list(c("a","b"),c("c","d"))
+
+#Read Data
+read.table()
+read.csv() #both for tabular data
+readLines() #lines of text file
+source() #reading in R code files
+dget() #same (dput)
+load() #saved workspaces
+unserialize() #single R objects in binary
+
+#Write Data
+write.table()
+writeLines()
+dump()
+dput()
+save()
+serialize()
+
+#arguments for read.table
+#file, header, sep, colClasses, nrows, comment.char, skip, stringsAsFactors

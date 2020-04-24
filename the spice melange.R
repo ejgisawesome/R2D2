@@ -47,3 +47,21 @@ browseVignettes("ggplot2")
 
 #recommended packages
 # boot, class, cluster, codetools, foreign, KernSmooth, lattice, mgcv, nlme, rpart, survival, MASS, spatial, nnet, Matrix
+#github desktop makes it easier
+
+install.packages("boot")
+install.packages("class")
+install.packages("cluster")
+install.packages("codetools")
+install.packages("foreign")
+install.packages("KernSmooth")
+install.packages("lattice")
+install.packages("mgcv")
+install.packages("nlme")
+install.packages("rpart")
+install.packages("survival")
+install.packages("MASS")
+install.packages("spatial")
+install.packages("nnet")
+install.packages("Matrix")
+

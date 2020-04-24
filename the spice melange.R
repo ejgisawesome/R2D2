@@ -65,3 +65,37 @@ install.packages("spatial")
 install.packages("nnet")
 install.packages("Matrix")
 
+vectors()
+attributes()
+
+##concatenate
+c() 
+
+#Explicit Coercion
+as.numeric()
+as.logical()
+as.character()
+
+#variety of objects
+list()
+
+#Matrices (a vector type)
+m <- matrix(nrow=3,ncol=3) #example with NaN
+
+#Matrix by dimension on vector
+m <- 1:10
+dim(m) <- c(2,5)
+
+#Matrix by column binding; row binding
+x <- 1:3
+y <- 10:12
+cbind(x,y)
+rbind(x,y)
+
+#Factors (categorical data) Ordered or Unordered
+#Like integer vector with each integer labeled (Male and Female > 1 and 2)
+#lm() and glm() functions like factors
+
+fx <- factor(c("yes","yes","yes","no","no"),levels = c("yes","no"))
+
+

@@ -248,3 +248,42 @@ good <- complete.cases(x,y) #beast function
 good
 
 #Vectorized Operations
+x <- 1:4; y <- 6:9
+x+y
+x>2
+x>=2
+y==8
+x*y
+x/y
+
+#Matrix
+x<-matrix(1:4,2,2)
+y<- matrix(rep(10,4),2,2)
+x*y #Element-wise Multiplication
+x/y #same thing
+x %*% y #Matrix Multiplication
+x %/% y
+
+#Swirl
+install.packages("swirl")
+packageVersion("swirl")
+library(swirl)
+install_from_swirl("R Programming")
+swirl()
+
+#| You can exit swirl and return to the R prompt (>) at any time by
+#| pressing the Esc key. If you are already at the prompt, type bye() to
+#| exit and save your progress. When you exit properly, you'll see a
+#| short message letting you know you've done so.
+
+#| When you are at the R prompt (>):
+#  | -- Typing skip() allows you to skip the current question.
+#| -- Typing play() lets you experiment with R on your own; swirl will
+#| ignore what you do...
+#| -- UNTIL you type nxt() which will regain swirl's attention.
+#| -- Typing bye() causes swirl to exit. Your progress will be saved.
+#| -- Typing main() returns you to swirl's main menu.
+#| -- Typing info() displays these options again.
+
+#| Let's get started!
+

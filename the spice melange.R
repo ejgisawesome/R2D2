@@ -140,3 +140,102 @@ serialize()
 
 #arguments for read.table
 #file, header, sep, colClasses, nrows, comment.char, skip, stringsAsFactors
+
+data <- read.Table("sample.txt") #read its help page
+
+#colClasses (speed up formula)
+initial <- read.table("datatable.txt",nrows=100)
+classes <- supply(initial,class)
+tabAll <- read.table("datatable.txt",colClasses = classes)
+
+#know: how much RAM you got? what else is open? what 0S? 64-bit?
+
+#back of a napkin calc
+#144 billion bytes (150 mil rows X 120 columns or whatevs) / 2^20 = 1373 MB = 1.34 GB (/2^10)
+
+#textual formats (dumping and dput())
+#don't have to specify the class, it's in metadata
+
+#dput
+y <- data.frame(a=1,b="a")
+dput(y)
+dput(y,file="dput.R")
+new.y <- dget("dput.R")
+
+#dump
+x1 <- "shite"
+y1 <- data.frame(a=1,b="a")
+dump(c("x","y"),file = "dumpslikeatruck.R")
+rm(x1,y1)
+source("dumpslikeatruck.R")
+rm(m,new.y,y,fx,msg,x)
+
+#Interfaces to the Outside World
+file()
+gzfile()
+bzfile()
+url()
+
+# str(file)
+#function (description = "", open = "", blocking = TRUE, encoding = getOption("encoding"), raw = FALSE, method = getOption("url.method", 
+#                                                                        "default"))  
+ 
+#Connections to Read Parts of A File (sample)
+con <- gzfile("words.gz")
+x <- readLines(con,10)
+
+#This might take time?
+con <- url("http://www.jhsph.edu" , "r")
+x <- readLines(con)
+head(x)
+
+#Subsetting [] [[]] $
+x <- c("a","b","c","c","d","a")
+x[1]
+x[2]
+x[1:4]
+x[x>"a"] #letters have an order
+u <- x > "a"
+u
+x[u]
+
+#Subsetting Lists
+y <- list(fu=1:4,bar=0.6,rack="hello")
+y[1]
+y[[1]]
+rm(x)
+rm(con,u)
+y[1]
+y$bar
+y["bar"]
+y[["bar"]]
+y[c(1,3)]
+name <- "fu"
+y[[name]] #finds it
+y$name #takes it literally
+y$fu #must be exact
+
+#something or other, not important
+x <- list(a = list(10,12,14),b=c(3.14159,2))
+x[[c(1,3)]]
+
+#Matrices
+x <- matrix(1:6,2,3)
+x[1,2]
+x[2,1]
+x[2,]
+x[,3]
+x
+#to get 1X1 matrix instead of vector of length 1, drop=FALSE
+x[1,2,drop=FALSE]
+x[1,2]
+#same for a whole row or column
+x[1,,drop=FALSE]
+
+#Partial Matching (done by $, [[]] you have to tell it exact=FALSE)
+x <- list(fart=1:5)
+x$a
+x$f
+x[["f"]]
+x[["f",exact=FALSE]]
+

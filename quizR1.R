@@ -43,9 +43,8 @@ readLines(hw,48)
 data.frame(hw,2,2)
 hw
 
-clim<- read.table(hw)
+clim<- read.csv(hw)
 read.table(hw)
-clim<-read.csv(hw)
 clim[2,]
 nrows(clim)
 rowsum(clim)

@@ -65,6 +65,8 @@ install.packages("spatial")
 install.packages("nnet")
 install.packages("Matrix")
 
+
+#WEEK 1 NOTES
 vectors()
 attributes()
 
@@ -286,4 +288,66 @@ swirl()
 #| -- Typing info() displays these options again.
 
 #| Let's get started!
+
+#WEEK 2 NOTES
+
+#Control Sturctures
+#if,else:
+#for:
+#while:
+#repeat:
+#break:
+#next:
+#return:
+
+
+#for loops
+x<-c("a","b","c","d")
+#version1
+for(i in 1:4){
+  print(x[i])
+}
+#version2
+for(i in seq_along(x)){
+  print(x[i])
+}
+#version3
+for(letter in x){
+  print(letter)
+}
+#version4
+for(i in 1:4) print(x[i])
+
+#nesting (hard to read)
+x <- matrix(1:6,2,3)
+for(i in seq_len(nrow(x))){
+  for(j in seq_len(ncol(x))){
+    print(x[i,j])
+  }
+}
+
+#while loops (watch for Inf)
+count<- 0
+while(count<10){
+  print(count)
+  count <- count+1
+}
+
+z<-5;count=0
+
+while(z >= 3 && z <=10){
+  print(z)
+  count <- count+1
+coin <- rbinom(1,1,0.5)
+if (coin ==1){ ##random walk
+  z<-z+1
+}else{
+  z<-z-1
+}
+
+}
+
+#Repeat (Inf loop unless break)
+
+#next (skips iterations in for loops)
 

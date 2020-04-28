@@ -27,3 +27,11 @@ columnmean <- function(y,removeNA = TRUE){
 }
 
 climclim<-clim[!is.na()]
+
+#... (collects all arguments so you don't need to write them all) (first arg in paste())
+?paste #see?
+?cat #concatenate
+#anything after ... can't be partially matched
+paste("a","b",sep=":")
+paste("a","b",se=":") #no typos
+

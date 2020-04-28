@@ -351,3 +351,92 @@ if (coin ==1){ ##random walk
 
 #next (skips iterations in for loops)
 
+#Functions
+
+#... (collects all arguments so you don't need to write them all) (first arg in paste())
+?paste #see?
+?cat #concatenate
+#anything after ... can't be partially matched
+paste("a","b",sep=":")
+paste("a","b",se=":") #no typos
+
+#Scoping Rules - Symbol Binding
+lm <- function(x){pi*x^2}
+#lm function created (bound values to symbol; lm could be your function or stats one)
+#environments -- searches environment for the value
+lm(3)
+lm(1)
+search() #tells you where R looks for shit; #lm is in :stats, #1 .GlobalEnv 
+
+#Scoping Rules: lexical scoping OR static scoping
+f <- function(x,y) {
+  x^2 + y /z #z is "free variable"
+} #spoiler alert: error
+#The values of free variables are searched for in the environment in which the function was defined.
+#What is an environment? collection of (symbol,value) pairs...all have a parent unless empty
+#function + environment = a closure OR function closure
+
+#Lexical Scoping: if value of symbol not found, look in parent environment until top-level(global or namespace of package)
+#At global level, search continues until the empty environment.  If not found, error.
+
+#Why we need to know this?  well...
+#R makes it possible to define functions inside other functions (return value can be a function!
+#In that case, not defined in global environment.
+
+make.power <- function(n){
+  pow <- function(x){
+    x^n
+  }
+  pow
+}
+
+cube <- make.power(3) #try it now
+square <- make.power(2)
+#Find the environment
+ls(environment(cube))
+get("n",environment(cube))
+?ls #list objects
+
+#Lexical Scoping Demo
+y <- 10
+f <- function(x){
+  y <- 2
+  y^2 + g(x)
+}
+
+g <- function(x){
+  x*y
+}
+
+f(3)#What is f(3)? 34. Why come? 2^2 + x*10
+#value of y in g looked up in global:10 | calling environment is parent frame (2) used in dynamic scoping
+
+#Let's confuse you.  (appearance of dynamic scoping but not really)
+g <- function(x){
+  a<-3
+  x+a+y
+}
+g(2) #15.  y is still 10?  2+3+10.  Unless you clear it and don't define Y.
+rm(list=ls()) #CLEAR ENVIRONMENT
+y=3
+
+#Lexical Scoping Languages: Scheme, Perl, Python, Common Lisp (all languages converge to Lisp)
+#Downsides: All objects must be stored in memory.  All functions carry a pointer to their respective
+#environments (which could be anywhere)
+
+#OPTIMIZATION EXAMPLE
+
+#Making a Constructor Function
+ make.NegLogLik <- function(data,fixed=c(FALSE,FALSE)) {
+   params <- fixed
+   funciton(p){
+     params[!fixed] <- p
+     mu <- params[1]
+     sigma <- params[2]
+     a <- -0.5*length(data)*log(2*pi*sigma^2)
+     b <- -0.5*sum((data-mu)^2)/(sigma^2)
+     -(a+b)
+   }
+ }
+ #Note: Optimization functions in R minimize functions, so you must use negative log-likelihood
+ #What does this all mean?

@@ -429,7 +429,7 @@ y=3
 #Making a Constructor Function
  make.NegLogLik <- function(data,fixed=c(FALSE,FALSE)) {
    params <- fixed
-   funciton(p){
+     function(p){
      params[!fixed] <- p
      mu <- params[1]
      sigma <- params[2]
@@ -440,3 +440,23 @@ y=3
  }
  #Note: Optimization functions in R minimize functions, so you must use negative log-likelihood
  #What does this all mean?
+ ?optim
+ ?nlm
+ ?optimize
+ 
+ set.seed(1);normals <- rnorm(100,1,2)
+ ?rnorm
+ nLL <- make.NegLogLik(normals)
+nLL 
+ls(environment(nLL))
+
+#Estimating parameters
+optim(c(mu=0,sigma=1),nLL)$par
+#Fixing sigma=2
+nLL<-make.NegLogLik(normals,c(FALSE,2))
+optimize(nLL,c(-1,3))$minimum
+#Fixing mu=1
+nLL<-make.NegLogLik(normals,c(1,FALSE))
+optimize(nLL,c(1e-6,10))$minimum
+
+#we good?

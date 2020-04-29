@@ -181,7 +181,7 @@ url()
 # str(file)
 #function (description = "", open = "", blocking = TRUE, encoding = getOption("encoding"), raw = FALSE, method = getOption("url.method", 
 #                                                                        "default"))  
- 
+
 #Connections to Read Parts of A File (sample)
 con <- gzfile("words.gz")
 x <- readLines(con,10)
@@ -338,13 +338,13 @@ z<-5;count=0
 while(z >= 3 && z <=10){
   print(z)
   count <- count+1
-coin <- rbinom(1,1,0.5)
-if (coin ==1){ ##random walk
-  z<-z+1
-}else{
-  z<-z-1
-}
-
+  coin <- rbinom(1,1,0.5)
+  if (coin ==1){ ##random walk
+    z<-z+1
+  }else{
+    z<-z-1
+  }
+  
 }
 
 #Repeat (Inf loop unless break)
@@ -409,7 +409,8 @@ g <- function(x){
 }
 
 f(3)#What is f(3)? 34. Why come? 2^2 + x*10
-#value of y in g looked up in global:10 | calling environment is parent frame (2) used in dynamic scoping
+#value of y in g looked up in global:10 | 
+#calling environment is parent frame (2) used in dynamic scoping
 
 #Let's confuse you.  (appearance of dynamic scoping but not really)
 g <- function(x){
@@ -420,33 +421,36 @@ g(2) #15.  y is still 10?  2+3+10.  Unless you clear it and don't define Y.
 rm(list=ls()) #CLEAR ENVIRONMENT
 y=3
 
-#Lexical Scoping Languages: Scheme, Perl, Python, Common Lisp (all languages converge to Lisp)
-#Downsides: All objects must be stored in memory.  All functions carry a pointer to their respective
+#Lexical Scoping Languages: Scheme, Perl, Python, Common Lisp 
+#(all languages converge to Lisp)
+#Downsides: All objects must be stored in memory.  
+#All functions carry a pointer to their respective
 #environments (which could be anywhere)
 
 #OPTIMIZATION EXAMPLE
 
 #Making a Constructor Function
- make.NegLogLik <- function(data,fixed=c(FALSE,FALSE)) {
-   params <- fixed
-     function(p){
-     params[!fixed] <- p
-     mu <- params[1]
-     sigma <- params[2]
-     a <- -0.5*length(data)*log(2*pi*sigma^2)
-     b <- -0.5*sum((data-mu)^2)/(sigma^2)
-     -(a+b)
-   }
- }
- #Note: Optimization functions in R minimize functions, so you must use negative log-likelihood
- #What does this all mean?
- ?optim
- ?nlm
- ?optimize
- 
- set.seed(1);normals <- rnorm(100,1,2)
- ?rnorm
- nLL <- make.NegLogLik(normals)
+make.NegLogLik <- function(data,fixed=c(FALSE,FALSE)) {
+  params <- fixed
+  function(p){
+    params[!fixed] <- p
+    mu <- params[1]
+    sigma <- params[2]
+    a <- -0.5*length(data)*log(2*pi*sigma^2)
+    b <- -0.5*sum((data-mu)^2)/(sigma^2)
+    -(a+b)
+  }
+}
+#Note: Optimization functions in R minimize functions, 
+#so you must use negative log-likelihood
+#What does this all mean?
+?optim
+?nlm
+?optimize
+
+set.seed(1);normals <- rnorm(100,1,2)
+?rnorm
+nLL <- make.NegLogLik(normals)
 nLL 
 ls(environment(nLL))
 
@@ -460,3 +464,24 @@ nLL<-make.NegLogLik(normals,c(1,FALSE))
 optimize(nLL,c(1e-6,10))$minimum
 
 #we good?
+
+#how to plot shit
+#mu plot?
+nLL<-make.NegLogLik(normals,c(1,FALSE))
+x<-seq(1.7,1.9,len=100)
+y<-sapply(x,nLL)
+plot(x,exp(-(y-min(y))),type="l")
+?plot #l is lines
+
+#Negative Log Likelihood?  Still dunno what that is
+#Plot type ="l" not "1"
+#sigma plot?
+nLL<-make.NegLogLik(normals,c(FALSE,2))
+x<-seq(.5,1.5,len=100)
+y<-sapply(x,nLL)
+plot(x,exp(-(y-min(y))),type="l")
+
+#Go to Preferences and Ctrl+I to indent your code.  
+#This is a text editor.  Curious.  I am very intelligent.
+#Goddamn it apparently I'm a double spacing old fart wtf
+#Anyway I don't think it's working.

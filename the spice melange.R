@@ -531,3 +531,11 @@ x-y
 x<-as.POSIXct("2012-10-25 01:00:00")
 y<-as.POSIXct("2012-10-25 06:00:00",tz="GMT")
 y-x
+
+#Aww shit here we go again
+library(swirl)
+rm(list=ls())
+class(POSIXlt())
+
+#advanced date time
+install.packages('lubridate')

@@ -1,27 +1,29 @@
+rm(list=ls())
+
 #Pollutant Mean Formula
-directory <- '~/specdata'
-directory <- 'specdata'
+dir <- '~/specdata'
+
 
 
 pollutantmean <- function(directory,pollutant,id = 1:332) {
         ## 'directory' is a character vector of length 1 indicating
         ## the location of CSV files
         
-        direct <- paste('~/',directory,sep="")
-        setwd(direct)
-        getwd()
-        files <- dir(direct)
+        #setwd(directory)
+        #getwd()
+        files <- dir(directory)
         
-        alldata <- do.call(rbind,lapply(files,read.csv))
+        #alldata <- do.call(rbind,lapply(files,read.csv))
         x <- id
         somedata <- do.call(rbind,lapply(files[x],read.csv))
         
+        #somedata #print to check
         
         ## 'pollutant' is a character vector of length 1 indicating the
         ## name of the pollutant for which we will calculate the mean;
         ## either 'sulfate' or 'nitrate'
-        
-        pollutant <- names(data)
+      
+        #pollutant <- as.character(pollutant)
         
         
         ## 'id' is an integer vector indicating the monitor ID numbers
@@ -30,8 +32,14 @@ pollutantmean <- function(directory,pollutant,id = 1:332) {
         ## Return the mean of the pollutant across all monitors list
         ## in the 'id' vector (ignoring NA values)
         ## NOTE: Do not round the result!
-        useful <- mean(data$sulfate,na.rm = TRUE)
-         
+        mean(somedata[[pollutant]],na.rm=TRUE)
 }
 
-?id
+
+pollutantmean(dir,'sulfate',5)
+#q1
+pollutantmean(dir,'sulfate',1:10)
+#q2
+pollutantmean(dir,'nitrate',70:72)
+#q3
+pollutantmean(dir,"nitrate",23)

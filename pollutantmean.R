@@ -9,7 +9,7 @@ pollutantmean <- function(directory,pollutant,id = 1:332) {
         ## 'directory' is a character vector of length 1 indicating
         ## the location of CSV files
         
-        #setwd(directory)
+        setwd(directory)
         #getwd()
         files <- dir(directory)
         

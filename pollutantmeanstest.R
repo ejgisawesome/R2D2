@@ -70,3 +70,25 @@ pollutantmeantest <- function(directory,pollutant,id = 1:332) {
 }
 
 pollutantmeantest(dir,'nitrate',5)
+
+
+pollutantmean(dic,'sulfate',5)
+
+#q1
+pollutantmean(dic,'sulfate',1:10)
+#q2
+pollutantmean(dic,'nitrate',70:72)
+#q3
+pollutantmean(dic,"nitrate",23)
+
+
+complete(dir,1)
+complete(dir,c(2,4,8,10,12))
+complete(dir,30:25)
+complete(dir,3)
+
+RNGversion("3.5.1")  
+set.seed(42)
+cc <- complete(dir, 332:1)
+use <- sample(332, 10)
+print(cc[use, "nobs"])

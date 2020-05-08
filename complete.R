@@ -1,6 +1,8 @@
 # COMPLETE
-rm(list=ls())
-
+#rm(list=ls())
+#setwd('~/Github/R2D2')
+#getwd()
+#dir <- '~/specdata'
 
 complete <- function(directory,id=1:332){
         ## 'directory' is char vector length 1 for location
@@ -26,16 +28,7 @@ complete <- function(directory,id=1:332){
        ids = c(ids,x) 
        nobs = c(nobs,sum(complete.cases(somedata)))
        }
+      setwd('~/Github/R2D2')
+      
         data.frame(id = ids, nobs = nobs)
 }
-
-complete(dir,1)
-complete(dir,c(2,4,8,10,12))
-complete(dir,30:25)
-complete(dir,3)
-
-RNGversion("3.5.1")  
-set.seed(42)
-cc <- complete(dir, 332:1)
-use <- sample(332, 10)
-print(cc[use, "nobs"])

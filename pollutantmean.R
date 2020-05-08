@@ -1,7 +1,7 @@
 rm(list=ls())
 
 #Pollutant Mean Formula
-dir <- '~/specdata'
+#dir <- '~/specdata'
 
 
 
@@ -32,14 +32,9 @@ pollutantmean <- function(directory,pollutant,id = 1:332) {
         ## Return the mean of the pollutant across all monitors list
         ## in the 'id' vector (ignoring NA values)
         ## NOTE: Do not round the result!
-        mean(somedata[[pollutant]],na.rm=TRUE)
+        setwd('~/Github/R2D2')
+                mean(somedata[[pollutant]],na.rm=TRUE)
 }
 
 
-pollutantmean(dir,'sulfate',5)
-#q1
-pollutantmean(dir,'sulfate',1:10)
-#q2
-pollutantmean(dir,'nitrate',70:72)
-#q3
-pollutantmean(dir,"nitrate",23)
+

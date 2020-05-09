@@ -11,9 +11,39 @@ corr <- function(directory, threshold = 0){
     #files <- dir(directory)
     files <- dir(dir)
     
-    comp <- complete(dir,1:332)
+    'for (x in id) {
+      somedata <- do.call(rbind,lapply(files[x],read.csv))
+      # id is integer for id numbers
+      
+      ## Return data frame of the form:
+      ## id   nobs
+      ## 1    117
+      ## 2   1041
+      ## ...
+      ## where id is ID# and nobs is # complete cases
+      
+      
+      ids = c(ids,x) 
+      nobs = c(nobs,sum(complete.cases(somedata)))
+    }'
+    
+    #alldata <- do.call(rbind,lapply(files,read.csv))
+    comp <- complete(dir)
+    #threshold = 600
+    
+    x <- comp$id[comp$nobs>threshold]
+    
+    setwd(dir)
+    somedata <- do.call(rbind,lapply(files[x],read.csv))
+      someusefuldata <- na.omit(somedata)
+      howmuch <- length(someusefuldata$Date)
+      
+      
+      corky <- cor(someusefuldata$sulfate,someusefuldata$nitrate,use = "complete.obs")
+      
+    
     #threshold = 400 #testing
-    cct <- comp[,2]>threshold
+    
     ## 'threshold' is a numeric vector of length 1 indicating the
     ## number of completely observed observation (on all
     ## variables) required to compute the correlation between
@@ -24,7 +54,13 @@ corr <- function(directory, threshold = 0){
   
   
     setwd('~/Github/R2D2')
+    corky
 }
 
 corr(dir,150)
 complete(dir,c(2,4,8,10,12)) #put it in the environment
+someusefuldata$nitrate[1]
+someusefuldata$nitrate[2]
+
+
+

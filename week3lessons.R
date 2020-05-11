@@ -189,3 +189,119 @@ mapply(noise,1:5,1:5,2)
 ## TAPPLY
 
 ## apply a function over subsets of a vector
+
+x <- c(rnorm(10),runif(10),rnorm(10,1))
+f <- gl(3,10) #the hell is this?
+?gl #factor variable, 3 levels, 10 repeats
+f
+'
+[1] 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3
+[22] 3 3 3 3 3 3 3 3 3
+Levels: 1 2 3
+'
+
+#tapply
+tapply(x,f,mean)
+'
+        1         2         3 
+0.5056992 0.5192166 0.8219205
+'
+# without simplify: a list
+tapply(x,f,mean,simplify=F)
+'
+$`1`
+[1] 0.5056992
+
+$`2`
+[1] 0.5192166
+
+$`3`
+[1] 0.8219205
+'
+
+# Range (min-max)
+tapply(x,f,range)
+
+
+## SPLIT
+?split
+
+## split takes vector and splits it into groups
+## determined by factor or list of factors
+
+## combine with the loopers
+
+str(split)
+## function (x, f, drop = FALSE, ...)
+## x: vector, list, data frame
+## f: factor or list of factors
+## drop: whether to drop empty factors levels
+
+split(x,f)
+View(x)
+View(f)
+#split vectors by levels return list
+#lapply, sapply the list
+
+lapply(split(x,f),mean)
+'
+$`1`
+[1] 0.5056992
+
+$`2`
+[1] 0.5192166
+
+$`3`
+[1] 0.8219205
+'
+#split, then mean
+#tapply woulda did it too?
+
+x <- rnorm(10)
+f1 <- gl(2,5)
+f2 <- gl(5,2)
+f1
+'
+[1] 1 1 1 1 1 2 2 2 2 2
+Levels: 1 2
+'
+f2
+'
+ [1] 1 1 2 2 3 3 4 4 5 5
+Levels: 1 2 3 4 5
+'
+?interaction #compute factor interactions
+interaction(f1,f2)
+'
+ [1] 1.1 1.1 1.2 1.2 1.3 2.3 2.4 2.4 2.5 2.5
+10 Levels: 1.1 2.1 1.2 2.2 1.3 2.3 ... 2.5
+'
+#gender + race for example
+
+#Interactions can create empty levels
+str(split(x,list(f1,f2)))
+#call interaction automatically
+'
+List of 10
+ $ 1.1: num [1:2] 0.455 0.705
+ $ 2.1: num(0) 
+ $ 1.2: num [1:2] 1.035 -0.609
+ $ 2.2: num(0) 
+ $ 1.3: num 0.505
+ $ 2.3: num -1.72
+ $ 1.4: num(0) 
+ $ 2.4: num [1:2] -0.784 -0.851
+ $ 1.5: num(0) 
+ $ 2.5: num [1:2] -2.4142 0.0361
+'
+# to drop empty levels
+str(split(x,list(f1,f2),drop=T))
+'
+List of 6
+ $ 1.1: num [1:2] 0.455 0.705
+$ 1.2: num [1:2] 1.035 -0.609
+$ 1.3: num 0.505
+$ 2.3: num -1.72
+$ 2.4: num [1:2] -0.784 -0.851
+$ 2.5: num [1:2] -2.4142 0.0361
+'

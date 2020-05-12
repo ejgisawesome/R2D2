@@ -64,7 +64,19 @@ Warning messages:
 ## BASIC TOOLS
 
 ?traceback
-?debug
-?browser
-?trace
-?recover
+?debug #execute one line at a time, find shit in browser
+?browser #suspend function at a point, not the top
+?trace #insert code into function at a specific place (call to browser()?)
+?recover #related to traceback; modify error behavior to browse fct. call stack
+
+## USING TOOLS
+
+mean(x)
+traceback()
+
+lm(y-x)
+traceback()
+debug(lm)
+lm(y-x)
+
+# swirl LAPPLY AND SAPPLY / VAPPLY AND TAPPLY

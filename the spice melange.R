@@ -575,3 +575,8 @@ pollutantmean <- function(directory,pollutant,id = 1:332) {
     mean(somedata[[pollutant]],na.rm=TRUE)
 }
 
+## Lapply swirl
+## http://archive.ics.uci.edu/ml/datasets/Flags ## Machine Learning Repository
+
+
+

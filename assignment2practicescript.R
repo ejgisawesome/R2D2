@@ -4,7 +4,7 @@ rm(list=ls())
 install.packages("matlib")
 library(matlib)
 ?inv
-
+?solve
 makeVector <- function(x = numeric()) {
         m <- NULL
         set <- function(y) {

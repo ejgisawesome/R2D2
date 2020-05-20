@@ -62,3 +62,5 @@ sum(flips) ##finds probability of unfair flip landing (72 this time)
 > rbinom(1,size=100,prob=0.7) ##number of heads in unfair coin flip
 flips2 <- rbinom(100,size=1,prob=0.7) ##all the flips as 1 and 0
 sum(flips2) ##69
+
+?r

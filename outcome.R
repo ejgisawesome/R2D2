@@ -1,6 +1,7 @@
 # install.packages("data.table")
 library("data.table")
-
+setwd('~/Github/R2D2')
+rm(list=ls())
 # Reading in data
 outcome <- data.table::fread('outcome-of-care-measures.csv')
 outcome[, (11) := lapply(.SD, as.numeric), .SDcols = (11)]

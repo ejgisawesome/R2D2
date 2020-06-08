@@ -13,4 +13,10 @@ rm(list=ls())
 
 
 ## CHAPTER 2 GETTING DATA INTO R
+rm(list=ls())
+
+Head[-3] ##exclude with negative sign
+
+## identity vector setup
+Id <- rep(c(1,2,3,4),each=8)
 

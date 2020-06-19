@@ -1,4 +1,5 @@
 rm(list=ls())
+setwd("~/GitHub/R2D2")
 
 ## 2009 A Beginner's Guide To R
 

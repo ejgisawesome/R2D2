@@ -1,4 +1,5 @@
-rm(list=ls())
+rm(list=ls()) #clear console
+rm(list = setdiff(ls(), lsf.str())) #clear variables
 setwd("~/GitHub/R2D2")
 
 ## 2009 A Beginner's Guide To R

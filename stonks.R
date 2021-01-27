@@ -6,13 +6,16 @@ install.packages("quantmod")
 # FUCK IS A TIBBLE?
 install.packages("tidyquant")
 
-bal <- 6.22
-shares <- function(deposit,price,balance=bal){
-        num <- floor((deposit + balance)/price)
+#LOAD PACKAGE
+library(quantmod)
+
+bal <- 72.59
+shares <- function(stonk,deposit=0,balance=bal){
+        num <- floor((deposit + balance)/price(stonk))
         return(num)
 }
 
-target <- function(deposit,num_shares,balance=bal){
+target <- function(num_shares,deposit=0,balance=bal){
         target_price <- round((deposit+balance)/num_shares,digits=2)
         return(target_price)
 }

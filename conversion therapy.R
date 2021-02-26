@@ -14,3 +14,8 @@ convertIn2M <- function(inches){
         meters <- .0254*inches
         return(meters)
 }
+
+convertMM2ft <- function(mm){
+        feet <- 0.00328084*mm
+        return(feet)
+}

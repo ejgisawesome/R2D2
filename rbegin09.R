@@ -22,3 +22,4 @@ Head[-3] ##exclude with negative sign
 ## identity vector setup
 Id <- rep(c(1,2,3,4),each=8)
 
+install.packages("swirl")

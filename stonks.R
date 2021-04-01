@@ -9,7 +9,7 @@ install.packages("tidyquant")
 #LOAD PACKAGE
 library(quantmod)
 
-bal <- .23
+bal <- 9.91
 shares <- function(stonk,deposit=0,balance=bal){
         num <- floor((deposit + balance)/price(stonk))
         return(num)

@@ -43,7 +43,7 @@ cvM2ft <- function(metres){
   return(feet)
 }
 
-# LITERS PER SECOND -> CFM
+# Lm^3 -> CFM
 cvLs2cfm <- function(ls){
   cfm <- 35.3146662313*ls
   return(cfm)

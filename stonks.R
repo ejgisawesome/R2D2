@@ -15,6 +15,8 @@ shares <- function(stonk,deposit=0,balance=bal){
         return(num)
 }
 
+#change it idk
+
 target <- function(num_shares,deposit=0,balance=bal){
         target_price <- round((deposit+balance)/num_shares,digits=2)
         return(target_price)

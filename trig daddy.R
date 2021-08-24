@@ -1,13 +1,13 @@
-asind <- function (a1,a2){
-        asin(a1/a2)*(180/pi)
+asind <- function (o,h){
+        asin(o/h)*(180/pi)
 }
 
-acosd <- function(a1,a2){
-        acos(a1/a2)*(180/pi)
+acosd <- function(a,h){
+        acos(a/h)*(180/pi)
 }
 
-atand <- function(a1,a2){
-        atan(a1/a2)*(180/pi)
+atand <- function(o,a){
+        atan(o/a)*(180/pi)
 }
 
 sind <- function(x){
